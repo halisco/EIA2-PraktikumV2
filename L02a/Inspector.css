@@ -1,0 +1,15 @@
+
+
+.divs {
+    background-color: blue;
+    float: left;
+    margin-right: 10px;
+    margin-left: 150px;
+    width: 400px;
+    height: 600px;
+}
+
+#fix {
+    position: fixed;
+    background-color: cornflowerblue;
+}
