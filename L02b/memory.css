@@ -1,0 +1,40 @@
+.back {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+    float: left;
+}
+
+.front {
+    width: 150px;
+    height: 150px;
+    float: left;
+}
+
+.gone {
+    width: 150px;
+    height: 150px;
+    visibility: hidden;
+    float: left;
+}
+
+.divboxFront {
+    width: 150px;
+    height: 150px;
+    margin-top: 2px;
+    margin-left: 5px;
+    float: left;
+    background-image: url('Rückseite.jpeg');
+}
+
+.divboxBack {
+    width: 150px;
+    height: 150px;
+    margin-top: 2px;
+    margin-left: 5px;
+    float: left;
+}
+
+.b {
+    background-color: red;
+}
