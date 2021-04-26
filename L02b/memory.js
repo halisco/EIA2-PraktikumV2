@@ -99,6 +99,11 @@ var L02b;
             pics[i].addEventListener("click", Frontclass);
         }
     }
+    let zeit = 0;
+    setInterval(timer, 1000);
+    function timer() {
+        zeit++;
+    }
     function Frontclass(_event) {
         let elem = _event.target; //Hat mir später ne Menge Schwirigkeiten bereitet...
         if (activeCards.length < 2) {
@@ -106,7 +111,7 @@ var L02b;
             elem.classList.add("front");
             activeCards.push(elem); //Schwierigkeiten: Konnte den Einträge des Arrays in keine sinnvollen Namen geben, 
         } // Array vom Typ HTMLElement konnte weder class noch name zugeordnet werden
-        console.log(activeCards);
+        console.log(activeCards[0]);
         if (activeCards.length == 2) {
             setTimeout(removeElement1, 800);
             setTimeout(Backclass, 1500);
@@ -137,7 +142,7 @@ var L02b;
             console.log(cardNr);
         }
         if (doneCards.length == cardNr * 2) {
-            alert("You won!");
+            alert("You won! Your time was: " + zeit + " Seconds");
         }
     }
 })(L02b || (L02b = {}));

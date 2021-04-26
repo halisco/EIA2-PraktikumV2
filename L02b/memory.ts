@@ -107,9 +107,14 @@ namespace L02b {
         pics[i].addEventListener("click", Frontclass);
     }
     }
+
+    let zeit: number = 0;
+    setInterval(timer, 1000);
     
-
-
+    function timer(): void {
+        zeit++;
+    }
+    
     function Frontclass(_event: Event): void {
     let elem: HTMLElement = <HTMLElement>_event.target; //Hat mir später ne Menge Schwirigkeiten bereitet...
     if (activeCards.length < 2) {
@@ -117,7 +122,7 @@ namespace L02b {
     elem.classList.add("front");
     activeCards.push(elem);         //Schwierigkeiten: Konnte den Einträge des Arrays in keine sinnvollen Namen geben, 
     }                               // Array vom Typ HTMLElement konnte weder class noch name zugeordnet werden
-    console.log(activeCards);
+    console.log(activeCards[0]);
     
     if (activeCards.length == 2) {
     setTimeout(removeElement1, 800);
@@ -157,7 +162,7 @@ namespace L02b {
         }
 
         if (doneCards.length == cardNr * 2) {
-            alert("You won!");
+            alert("You won! Your time was: " + zeit + " Seconds");
         }
 
     
