@@ -128,7 +128,7 @@ namespace L02b {
     setTimeout(removeElement1, 800);
     setTimeout(Backclass, 1500);
     }
-
+    }
     
 
     function Backclass(): void {
@@ -138,7 +138,7 @@ namespace L02b {
     }
     activeCards = [];
     }
-    }
+    
 
     function removeElement1(): void {                           //Dadurch ist das entstanden... nicht schön aber auch nicht gewollt.
         if (activeCards[0].id == activeCards[1].id) {           //Habe keine richtige Lösung gefunden, Id war das einzige was funktioniert hat.
