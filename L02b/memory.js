@@ -109,6 +109,7 @@ var L02b;
         if (activeCards.length < 2) {
             elem.classList.remove("back");
             elem.classList.add("front");
+            elem.removeEventListener("click", Frontclass);
             activeCards.push(elem); //Schwierigkeiten: Konnte den Einträge des Arrays in keine sinnvollen Namen geben, 
         } // Array vom Typ HTMLElement konnte weder class noch name zugeordnet werden
         console.log(activeCards[0]);
@@ -116,13 +117,14 @@ var L02b;
             setTimeout(removeElement1, 800);
             setTimeout(Backclass, 1500);
         }
-        function Backclass() {
-            for (let i = 0; activeCards.length > i; i++) {
-                activeCards[i].classList.remove("front");
-                activeCards[i].classList.add("back");
-            }
-            activeCards = [];
+    }
+    function Backclass() {
+        for (let i = 0; activeCards.length > i; i++) {
+            activeCards[i].classList.remove("front");
+            activeCards[i].classList.add("back");
+            activeCards[i].addEventListener("click", Frontclass);
         }
+        activeCards = [];
     }
     function removeElement1() {
         if (activeCards[0].id == activeCards[1].id) { //Habe keine richtige Lösung gefunden, Id war das einzige was funktioniert hat.

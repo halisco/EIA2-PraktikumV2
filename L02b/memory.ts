@@ -120,6 +120,7 @@ namespace L02b {
     if (activeCards.length < 2) {
     elem.classList.remove("back");
     elem.classList.add("front");
+    elem.removeEventListener("click", Frontclass);
     activeCards.push(elem);         //Schwierigkeiten: Konnte den Einträge des Arrays in keine sinnvollen Namen geben, 
     }                               // Array vom Typ HTMLElement konnte weder class noch name zugeordnet werden
     console.log(activeCards[0]);
@@ -135,6 +136,7 @@ namespace L02b {
     for (let i: number = 0; activeCards.length > i; i++) {
     activeCards[i].classList.remove("front");
     activeCards[i].classList.add("back");
+    activeCards[i].addEventListener("click", Frontclass);
     }
     activeCards = [];
     }
