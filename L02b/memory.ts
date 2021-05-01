@@ -1,4 +1,3 @@
-
 namespace L02b {
 
     window.addEventListener("load", handleLoad);
