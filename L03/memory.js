@@ -17,6 +17,7 @@ var L02b;
     let tempColor = ""; //Zwischenspeicher für Kartenfarbe
     let cardNr = 0; //Speicherort für Kartenpaar-Anzahl
     let activeCards = []; //Array Zwischenspeicher zum Abfragen der Karten
+    let activeCardsName = [];
     let doneCards = []; //Wichtig für function congrats() Speicherort für alert
     function handlechange(_event) {
         let target = _event.target;
@@ -124,9 +125,12 @@ var L02b;
             elem.classList.remove("back");
             elem.classList.add("front");
             elem.removeEventListener("click", Frontclass);
+            let nameOf = String(elem.getAttribute("name"));
+            activeCardsName.push(nameOf);
             activeCards.push(elem); //Schwierigkeiten: Konnte den Einträge des Arrays in keine sinnvollen Namen geben, 
         } // Array vom Typ HTMLElement konnte weder class noch name zugeordnet werden
-        console.log(activeCards[0]);
+        console.log(activeCards);
+        console.log(activeCardsName);
         if (activeCards.length == 2) {
             setTimeout(removeElement1, 800);
             setTimeout(Backclass, 1500);
@@ -139,9 +143,10 @@ var L02b;
             activeCards[i].addEventListener("click", Frontclass);
         }
         activeCards = [];
+        activeCardsName = [];
     }
     function removeElement1() {
-        if (activeCards[0].id == activeCards[1].id) { //Habe keine richtige Lösung gefunden, Id war das einzige was funktioniert hat.
+        if (activeCardsName[0] == activeCardsName[1]) { //Habe keine richtige Lösung gefunden, Id war das einzige was funktioniert hat.
             let rem1 = document.getElementsByName(activeCards[0].id);
             console.log(rem1);
             rem1[0].classList.remove("front");
@@ -155,6 +160,7 @@ var L02b;
             rem1[1].parentElement?.classList.add("divboxBack");
             doneCards.push(rem1[1]);
             activeCards = [];
+            activeCardsName = [];
             console.log(doneCards.length);
             console.log(cardNr);
         }

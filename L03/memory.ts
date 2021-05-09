@@ -22,6 +22,7 @@ namespace L02b {
     let tempColor: String = "";                                 //Zwischenspeicher für Kartenfarbe
     let cardNr: number = 0;                                     //Speicherort für Kartenpaar-Anzahl
     let activeCards: HTMLElement [] = [];                       //Array Zwischenspeicher zum Abfragen der Karten
+    let activeCardsName: String [] = [];
     let doneCards: HTMLElement [] = [];                         //Wichtig für function congrats() Speicherort für alert
 
 
@@ -146,9 +147,12 @@ namespace L02b {
     elem.classList.remove("back");
     elem.classList.add("front");
     elem.removeEventListener("click", Frontclass);
+    let nameOf: String = String(elem.getAttribute("name"));
+    activeCardsName.push(nameOf);
     activeCards.push(elem);         //Schwierigkeiten: Konnte den Einträge des Arrays in keine sinnvollen Namen geben, 
     }                               // Array vom Typ HTMLElement konnte weder class noch name zugeordnet werden
-    console.log(activeCards[0]);
+    console.log(activeCards);
+    console.log(activeCardsName);
     
     if (activeCards.length == 2) {
     setTimeout(removeElement1, 800);
@@ -164,11 +168,12 @@ namespace L02b {
     activeCards[i].addEventListener("click", Frontclass);
     }
     activeCards = [];
+    activeCardsName = [];
     }
     
 
     function removeElement1(): void {                           //Dadurch ist das entstanden... nicht schön aber auch nicht gewollt.
-        if (activeCards[0].id == activeCards[1].id) {           //Habe keine richtige Lösung gefunden, Id war das einzige was funktioniert hat.
+        if (activeCardsName[0] == activeCardsName[1]) {           //Habe keine richtige Lösung gefunden, Id war das einzige was funktioniert hat.
                                                                 
             let rem1: NodeListOf<HTMLElement> = document.getElementsByName(activeCards[0].id);
             console.log(rem1);
@@ -185,6 +190,7 @@ namespace L02b {
             doneCards.push(rem1[1]);
 
             activeCards = [];
+            activeCardsName = [];
             console.log(doneCards.length);
             console.log(cardNr);
         }
