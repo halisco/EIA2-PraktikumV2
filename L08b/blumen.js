@@ -6,7 +6,7 @@ var L08b;
     let canvas;
     //Für Blumencoordinaten
     function flowerX() {
-        let xFlower = (Math.floor(Math.random() * 550));
+        let xFlower = (Math.floor(Math.random() * 500));
         return xFlower;
     }
     function flowerY() {
@@ -41,15 +41,15 @@ var L08b;
         gras.lineTo(0, 600);
         gras.lineTo(0, 300);
         gras.moveTo(550, 290);
-        gras.bezierCurveTo(712, 220, 874, 220, 1200, 250);
-        gras.lineTo(1200, 600);
+        gras.bezierCurveTo(712, 220, 874, 220, 900, 250); //1200
+        gras.lineTo(900, 600); //1200
         gras.lineTo(550, 600);
         gras.closePath();
         let overline = new Path2D();
         overline.moveTo(0, 300);
         overline.bezierCurveTo(150, 250, 450, 250, 600, 300);
         overline.moveTo(550, 290);
-        overline.bezierCurveTo(712, 220, 874, 220, 1200, 250);
+        overline.bezierCurveTo(712, 220, 874, 220, 900, 250); //1200
         //Graslandschaft erstellt
         crc2.strokeStyle = _grasColor;
         crc2.fillStyle = _grasColor;
@@ -191,10 +191,10 @@ var L08b;
         crc2.translate(-240, 30);
         crc2.fill(busch);
         crc2.stroke(busch);
-        crc2.translate(350, -10);
+        crc2.translate(330, -10);
         crc2.fill(busch);
         crc2.stroke(busch);
-        crc2.translate(100, -15);
+        crc2.translate(80, -15);
         crc2.fill(busch);
         crc2.stroke(busch);
         crc2.resetTransform();
@@ -202,10 +202,11 @@ var L08b;
     function river() {
         let width = 0;
         let river = new Path2D();
-        river.moveTo(630, 250);
-        river.bezierCurveTo(600, 400, 700, 500, 650, 615);
+        river.moveTo(550, 275); //-80
+        //river.bezierCurveTo(520, 448, 580, 620, 580, crc2.canvas.height + 20);
+        river.bezierCurveTo(580, 448, 520, 620, 520, crc2.canvas.height + 20);
         for (width; width < 10; width++) {
-            crc2.translate(5, -1.3);
+            crc2.translate(5, -2);
             crc2.strokeStyle = "blue";
             crc2.filter = "blur(3px)";
             crc2.lineWidth = 4;
@@ -249,7 +250,7 @@ var L08b;
         wolke.arc(0, 0, radius, 0, 2 * Math.PI);
         crc2.fillStyle = gradient;
         for (let i = 0; i < xParticles; i++) {
-            let x = (Math.floor(Math.random() * 600 + 500));
+            let x = (Math.floor(Math.random() * 400 + 400)); //600 to 400
             let y = (Math.floor(Math.random() * 130 + 50));
             crc2.translate(x, y);
             crc2.fill(wolke);
