@@ -92,7 +92,6 @@ namespace L08a {
         crc2.stroke(person2);
         crc2.resetTransform();
         }
-
         let txt: HTMLElement = document.getElementById("text")!;
         txt.innerHTML = "Re-load Page and try again!";
 
