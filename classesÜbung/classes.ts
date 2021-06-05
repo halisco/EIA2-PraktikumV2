@@ -1,8 +1,8 @@
 namespace classes {
 
 class Vector {
-    x: number;
-    y: number;
+    x: number = 0;
+    y: number = 0;
 
     scale(_factor: number): void {
         this.x *= _factor;

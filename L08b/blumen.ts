@@ -19,9 +19,7 @@ namespace L08b {
         canvas = document.querySelector("canvas")!;
         crc2 = canvas.getContext("2d")!;
 
-        skyColor();
-        mountains();
-        clouds();
+       
         landscape("#567956", true);
         sunFlower(20);
         roseFlower(20);
@@ -40,6 +38,10 @@ namespace L08b {
     }
 
     function landscape(_grasColor: string, _withlight: boolean): void {
+        skyColor();
+        mountains();
+        clouds();
+
         let gras: Path2D = new Path2D();
         gras.moveTo(0, 300);
         gras.bezierCurveTo(150, 250, 450, 250, 600, 300);

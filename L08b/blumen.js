@@ -16,9 +16,6 @@ var L08b;
     function handleLoad(_event) {
         canvas = document.querySelector("canvas");
         crc2 = canvas.getContext("2d");
-        skyColor();
-        mountains();
-        clouds();
         landscape("#567956", true);
         sunFlower(20);
         roseFlower(20);
@@ -34,6 +31,9 @@ var L08b;
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
     }
     function landscape(_grasColor, _withlight) {
+        skyColor();
+        mountains();
+        clouds();
         let gras = new Path2D();
         gras.moveTo(0, 300);
         gras.bezierCurveTo(150, 250, 450, 250, 600, 300);
