@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="id.css">
     <script src="id.js"></script>
 </head>
-<body>
+<body id="body">
+    
+    <img src="pics/spotlight.png" id="spot" alt="">
     <fieldset id="front">
         <div id="wall">
-            <div class="video"></div>
-            <div class="video"></div>
+            <div class="video" id="vid1"></div>
+            <div class="video" id="vid2"></div>
             <div class="display"></div>
-            <div class="video"></div>
-            <div class="video"></div>
+            <div class="video" id="vid3"></div>
+            <div class="video" id="vid4"></div>
         </div>
     </fieldset>
 
@@ -23,18 +25,24 @@
                 <audio src="sounds/Maniac1.wav" id="man1a"></audio>
             </button>
             <button class="sound" id="take1">
-                <audio src="" id="take1a"></audio>
+                <audio src="sounds/Take1.wav" id="take1a"></audio>
+            </button>
+            <button class="sound" id="never4">
+                <audio src="sounds/Never4.wav" id="never4a"></audio>
             </button>
             <button class="sound"></button>
-            <button class="sound"></button>
-            <button class="sound"></button>
+            <button class="sound" id="never1">
+                <audio src="sounds/Never1.wav" id="never1a"></audio>
+            </button>
             <button class="sound" id="man2">
                 <audio src="sounds/Maniac2.wav" id="man2a"></audio>
             </button>
-            <button class="sound"></button>
+            <button class="sound" id="never2">
+                <audio src="sounds/Never2.wav" id="never2a"></audio>
+            </button>
             <button class="sound"></button>
             <button class="sound" id="take3">
-                <audio src="" id="take3a"></audio>
+                <audio src="sounds/Take3.wav" id="take3a"></audio>
             </button>
             <button class="sound"></button>
             <button class="sound"></button>
@@ -47,18 +55,21 @@
             </button>
             <button class="sound"></button>
             <button class="sound" id="take2">
-                <audio src="" id="take2a"></audio>
+                <audio src="sounds/Take2.wav" id="take2a"></audio>
             </button>
             <button class="sound"></button>
             <button class="sound"></button>
             <button class="sound" id="take4">
-                <audio src="" id="take4a"></audio>
+                <audio src="sounds/Take4.wav" id="take4a"></audio>
             </button>
-            <button class="sound"></button>
+            <button class="sound" id="never3">
+                <audio src="sounds/Never3.wav" id="never3a"></audio>
+            </button>
     </fieldset>
 
     <audio src="sounds/ManiacFull.wav" id="manFull"></audio>
-    <audio src="" id="takeFull"></audio>
+    <audio src="sounds/TakeFull.wav" id="takeFull"></audio>
+    <audio src="sounds/NeverFull.wav" id="neverFull"></audio>
 
     <fieldset id="stand">
         <p id="stelle"></p>

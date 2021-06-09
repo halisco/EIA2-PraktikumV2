@@ -100,15 +100,4 @@ namespace L09b {
         let y: number = (Math.floor(Math.random() * 130 + 50));
         return y;
     }
-    function xAll(): number {
-        let x: number = (Math.floor(Math.random() * crc2.canvas.width));
-        return x;
-    }
-    function yAll(): number {
-        let y: number = (Math.floor(Math.random() * crc2.canvas.height));
-        return y;
-    }
-
-    
-
 }

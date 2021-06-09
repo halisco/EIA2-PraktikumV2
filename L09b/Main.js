@@ -75,13 +75,5 @@ var L09b;
         let y = (Math.floor(Math.random() * 130 + 50));
         return y;
     }
-    function xAll() {
-        let x = (Math.floor(Math.random() * L09b.crc2.canvas.width));
-        return x;
-    }
-    function yAll() {
-        let y = (Math.floor(Math.random() * L09b.crc2.canvas.height));
-        return y;
-    }
 })(L09b || (L09b = {}));
 //# sourceMappingURL=Main.js.map

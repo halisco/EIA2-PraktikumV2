@@ -1,5 +1,5 @@
 body {
-    background-color: honeydew;
+    background-color: black;
 }
 #front {
     background-color: lightblue;
@@ -7,6 +7,14 @@ body {
     width: 1000px;
     margin: 0 auto;
     border: 3px solid blueviolet;
+}
+
+#spot {
+    width: 100%;
+    height: 125%;
+    position: absolute;
+    top: -80px;
+    
 }
 
 #board {
@@ -17,6 +25,8 @@ body {
     margin-top: 20px;
     border: 3px solid blueviolet;
     border-radius: 10px;
+    position: absolute;
+    left: 39%;
     
 }
 
@@ -26,6 +36,10 @@ body {
     height: 100px;
     background-color: lightblue;
     border: 3px solid blueviolet;
+    position: absolute;
+    left: 47%;
+    margin-top: 200px;
+    z-index: -2;
     
 }
 
@@ -66,3 +80,8 @@ body {
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 5px 15px blueviolet;
   }
+
+#vid {
+    width: 132px;
+    height: 300px;
+}
