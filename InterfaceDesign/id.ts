@@ -34,7 +34,7 @@ function playit(_event: Event): void {
 
     numberArray.push(numberArray[0]);
     let stelle: HTMLElement = <HTMLElement>document.getElementById("stelle");
-    stelle.innerHTML = numberArray[0] + " Stelle";
+    stelle.innerHTML = numberArray[0] + ". Stelle";
     stelle.style.textAlign = "center";
     numberArray.splice(0, 1);
     

@@ -28,7 +28,7 @@ function playit(_event) {
     console.log(soundsArray);
     numberArray.push(numberArray[0]);
     let stelle = document.getElementById("stelle");
-    stelle.innerHTML = numberArray[0] + " Stelle";
+    stelle.innerHTML = numberArray[0] + ". Stelle";
     stelle.style.textAlign = "center";
     numberArray.splice(0, 1);
     let music = document.getElementById(idOf + "a");
