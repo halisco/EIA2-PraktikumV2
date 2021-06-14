@@ -10,7 +10,7 @@ function handleLoad() {
     if (pausieren == true) {
         let btt = document.querySelectorAll(".sound");
         console.log(btt);
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 16; i++) {
             btt[i].addEventListener("click", playit);
         }
     }
@@ -18,7 +18,7 @@ function handleLoad() {
 function playit(_event) {
     pausieren = false;
     let btt = document.querySelectorAll(".sound");
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 16; i++) {
         btt[i].removeEventListener("click", playit);
     }
     let elem = _event.target;
@@ -69,14 +69,46 @@ function playit(_event) {
     wave.style.marginLeft = "150px";
     wave.style.marginTop = "40px";
     display.insertBefore(wave, display.firstChild);
-    let div = document.querySelector("#vid" + random());
-    let video = document.createElement("video");
-    video.setAttribute("src", "vids/dance1.mp4");
-    video.setAttribute("id", "shorts");
-    video.style.width = "132px";
-    video.style.height = "300px";
-    div.appendChild(video);
-    video.play();
+    if (idOf == "man1" || idOf == "never1" || idOf == "take1" || idOf == "brother1") {
+        let div = document.querySelector("#vid1");
+        let video = document.createElement("video");
+        video.setAttribute("src", "vids/" + idOf + ".mp4");
+        video.setAttribute("id", "shorts");
+        video.style.width = "132px";
+        video.style.height = "300px";
+        div.appendChild(video);
+        video.play();
+    }
+    else if (idOf == "man2" || idOf == "never2" || idOf == "take2" || idOf == "brother2") {
+        let div = document.querySelector("#vid2");
+        let video = document.createElement("video");
+        video.setAttribute("src", "vids/" + idOf + ".mp4");
+        video.setAttribute("id", "shorts");
+        video.style.width = "132px";
+        video.style.height = "300px";
+        div.appendChild(video);
+        video.play();
+    }
+    else if (idOf == "man3" || idOf == "never3" || idOf == "take3" || idOf == "brother3") {
+        let div = document.querySelector("#vid3");
+        let video = document.createElement("video");
+        video.setAttribute("src", "vids/" + idOf + ".mp4");
+        video.setAttribute("id", "shorts");
+        video.style.width = "132px";
+        video.style.height = "300px";
+        div.appendChild(video);
+        video.play();
+    }
+    else {
+        let div = document.querySelector("#vid4");
+        let video = document.createElement("video");
+        video.setAttribute("src", "vids/" + idOf + ".mp4");
+        video.setAttribute("id", "shorts");
+        video.style.width = "132px";
+        video.style.height = "300px";
+        div.appendChild(video);
+        video.play();
+    }
     if (idOf == "take1" || idOf == "take2" || idOf == "take3" || idOf == "take4") {
         setTimeout(waveGone, 700);
     }
@@ -132,7 +164,7 @@ function rightSound() {
     pausieren = false;
     let btt = document.querySelectorAll(".sound");
     console.log(btt);
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 16; i++) {
         btt[i].removeEventListener("click", playit);
     }
     let music = document.getElementById(ident); //...Full.wav  (id)
@@ -164,11 +196,11 @@ function rightSound() {
     confeti.style.position = "absolute";
     confeti.style.width = "100%";
     body.insertBefore(confeti, body.firstChild);
-    let div1 = document.querySelector("vid1");
+    let div1 = document.querySelector("#vid1");
     let videoNeverFull = document.createElement("video");
     videoNeverFull.setAttribute("src", "vids/NeverFullVid.mp4");
     videoNeverFull.setAttribute("id", "Neverlong");
-    videoNeverFull.style.width = "123px";
+    videoNeverFull.style.width = "132px";
     videoNeverFull.style.height = "300px";
     div1.appendChild(videoNeverFull);
     videoNeverFull.play();
@@ -177,7 +209,7 @@ function rightSound() {
     let videoManiacFull = document.createElement("video");
     videoManiacFull.setAttribute("src", "vids/ManiacFullVid.mp4");
     videoManiacFull.setAttribute("id", "Maniaclong");
-    videoManiacFull.style.width = "123px";
+    videoManiacFull.style.width = "132px";
     videoManiacFull.style.height = "300px";
     div2.appendChild(videoManiacFull);
     videoManiacFull.play();
@@ -186,7 +218,7 @@ function rightSound() {
     let videoBrotherFull = document.createElement("video");
     videoBrotherFull.setAttribute("src", "vids/BrotherFullVid.mp4");
     videoBrotherFull.setAttribute("id", "Brotherlong");
-    videoBrotherFull.style.width = "123px";
+    videoBrotherFull.style.width = "132px";
     videoBrotherFull.style.height = "300px";
     div3.appendChild(videoBrotherFull);
     videoBrotherFull.play();
@@ -195,7 +227,7 @@ function rightSound() {
     let videoTakeFull = document.createElement("video");
     videoTakeFull.setAttribute("src", "vids/TakeFullVid.mp4");
     videoTakeFull.setAttribute("id", "Takelong");
-    videoTakeFull.style.width = "123px";
+    videoTakeFull.style.width = "132px";
     videoTakeFull.style.height = "300px";
     div4.appendChild(videoTakeFull);
     videoTakeFull.play();
@@ -231,7 +263,7 @@ function stop() {
     marker4.style.display = "inline";
     pausieren = true;
     let btt = document.querySelectorAll(".sound");
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 16; i++) {
         btt[i].addEventListener("click", playit);
     }
 }
@@ -242,15 +274,12 @@ function waveGone() {
     video.remove();
     pausieren = true;
     let btt = document.querySelectorAll(".sound");
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 16; i++) {
         btt[i].addEventListener("click", playit);
     }
 }
 function random() {
     let x = (Math.floor(Math.random() * 4 + 1));
     return x;
-}
-for (let wewi = 1; wewi <= 64; wewi * 2) {
-    console.log(wewi);
 }
 //# sourceMappingURL=id.js.map
