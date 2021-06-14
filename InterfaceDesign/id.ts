@@ -37,7 +37,6 @@ function playit(_event: Event): void {
     soundsArrayNumber.push(numberOf);
     console.log(soundsArray);
     
-
     if (numberOf == soundsArrayNumber[0] || numberOf == soundsArrayNumber[soundsArrayNumber.length - 2] + 1) {
         console.log("right");
         let marker: HTMLElement = <HTMLElement>document.getElementById(roleOf + "BT");
@@ -156,6 +155,7 @@ function rightSound(): void {
     music.addEventListener("ended", stop);
     console.log(music);
     music.play();
+    window.addEventListener("click", stop);
 
     let display: HTMLElement = <HTMLElement>document.querySelector(".display");
     let cover: HTMLElement = document.createElement("img");
@@ -184,15 +184,45 @@ function rightSound(): void {
     confeti.style.width = "100%";
     body.insertBefore(confeti, body.firstChild);
 
-    let div: HTMLElement = <HTMLElement>document.querySelector("#vid" + random());
-    let testVideo: HTMLVideoElement = <HTMLVideoElement>document.createElement("video");
-    testVideo.setAttribute("src", "vids/danceFull1.mp4");
-    testVideo.setAttribute("id", "long");
-    testVideo.style.width = "132px";
-    testVideo.style.height = "300px";
-    div.appendChild(testVideo);
-    testVideo.play();
-    testVideo.loop = true;
+    let div1: HTMLElement = <HTMLElement>document.querySelector("vid1");
+    let videoNeverFull: HTMLVideoElement = <HTMLVideoElement>document.createElement("video");
+    videoNeverFull.setAttribute("src", "vids/NeverFullVid.mp4");
+    videoNeverFull.setAttribute("id", "Neverlong");
+    videoNeverFull.style.width = "123px";
+    videoNeverFull.style.height = "300px";
+    div1.appendChild(videoNeverFull);
+    videoNeverFull.play();
+    videoNeverFull.loop = true;
+
+    let div2: HTMLElement = <HTMLElement>document.querySelector("#vid2");
+    let videoManiacFull: HTMLVideoElement = <HTMLVideoElement>document.createElement("video");
+    videoManiacFull.setAttribute("src", "vids/ManiacFullVid.mp4");
+    videoManiacFull.setAttribute("id", "Maniaclong");
+    videoManiacFull.style.width = "123px";
+    videoManiacFull.style.height = "300px";
+    div2.appendChild(videoManiacFull);
+    videoManiacFull.play();
+    videoManiacFull.loop = true;
+
+    let div3: HTMLElement = <HTMLElement>document.querySelector("#vid3");
+    let videoBrotherFull: HTMLVideoElement = <HTMLVideoElement>document.createElement("video");
+    videoBrotherFull.setAttribute("src", "vids/BrotherFullVid.mp4");
+    videoBrotherFull.setAttribute("id", "Brotherlong");
+    videoBrotherFull.style.width = "123px";
+    videoBrotherFull.style.height = "300px";
+    div3.appendChild(videoBrotherFull);
+    videoBrotherFull.play();
+    videoBrotherFull.loop = true;
+
+    let div4: HTMLElement = <HTMLElement>document.querySelector("#vid4");
+    let videoTakeFull: HTMLVideoElement = <HTMLVideoElement>document.createElement("video");
+    videoTakeFull.setAttribute("src", "vids/TakeFullVid.mp4");
+    videoTakeFull.setAttribute("id", "Takelong");
+    videoTakeFull.style.width = "123px";
+    videoTakeFull.style.height = "300px";
+    div4.appendChild(videoTakeFull);
+    videoTakeFull.play();
+    videoTakeFull.loop = true;
    
 }
 
@@ -202,8 +232,18 @@ function stop(): void {
     cover.remove();
     let confeti: HTMLElement = <HTMLElement>document.getElementById("confetti");
     confeti.remove();
-    let testVideo: HTMLVideoElement = <HTMLVideoElement>document.getElementById("long");
-    testVideo.remove();
+
+    let videoNeverFull: HTMLVideoElement = <HTMLVideoElement>document.getElementById("Neverlong");
+    videoNeverFull.remove();
+    let videoManiacFull: HTMLVideoElement = <HTMLVideoElement>document.getElementById("Maniaclong");
+    videoManiacFull.remove();
+    let videoBrotherFull: HTMLVideoElement = <HTMLVideoElement>document.getElementById("Brotherlong");
+    videoBrotherFull.remove();
+    let videoTakeFull: HTMLVideoElement = <HTMLVideoElement>document.getElementById("Takelong");
+    videoTakeFull.remove();
+
+    let music: HTMLAudioElement = <HTMLAudioElement>document.getElementById(ident);
+    music.pause();
 
     let marker1: HTMLElement = <HTMLElement>document.getElementById("sound1BT");
     let marker2: HTMLElement = <HTMLElement>document.getElementById("sound2BT");
@@ -241,4 +281,9 @@ function waveGone(): void {
 function random(): number {
     let x: number = (Math.floor(Math.random() * 4 + 1));
     return x;
+}
+
+
+for (let wewi: number = 1; wewi <= 64; wewi * 2) {
+    console.log(wewi);
 }

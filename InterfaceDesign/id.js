@@ -139,6 +139,7 @@ function rightSound() {
     music.addEventListener("ended", stop);
     console.log(music);
     music.play();
+    window.addEventListener("click", stop);
     let display = document.querySelector(".display");
     let cover = document.createElement("img");
     cover.setAttribute("src", "pics/" + ident + ".jpg"); //...Full.jpg  (src)
@@ -163,15 +164,42 @@ function rightSound() {
     confeti.style.position = "absolute";
     confeti.style.width = "100%";
     body.insertBefore(confeti, body.firstChild);
-    let div = document.querySelector("#vid" + random());
-    let testVideo = document.createElement("video");
-    testVideo.setAttribute("src", "vids/danceFull1.mp4");
-    testVideo.setAttribute("id", "long");
-    testVideo.style.width = "132px";
-    testVideo.style.height = "300px";
-    div.appendChild(testVideo);
-    testVideo.play();
-    testVideo.loop = true;
+    let div1 = document.querySelector("vid1");
+    let videoNeverFull = document.createElement("video");
+    videoNeverFull.setAttribute("src", "vids/NeverFullVid.mp4");
+    videoNeverFull.setAttribute("id", "Neverlong");
+    videoNeverFull.style.width = "123px";
+    videoNeverFull.style.height = "300px";
+    div1.appendChild(videoNeverFull);
+    videoNeverFull.play();
+    videoNeverFull.loop = true;
+    let div2 = document.querySelector("#vid2");
+    let videoManiacFull = document.createElement("video");
+    videoManiacFull.setAttribute("src", "vids/ManiacFullVid.mp4");
+    videoManiacFull.setAttribute("id", "Maniaclong");
+    videoManiacFull.style.width = "123px";
+    videoManiacFull.style.height = "300px";
+    div2.appendChild(videoManiacFull);
+    videoManiacFull.play();
+    videoManiacFull.loop = true;
+    let div3 = document.querySelector("#vid3");
+    let videoBrotherFull = document.createElement("video");
+    videoBrotherFull.setAttribute("src", "vids/BrotherFullVid.mp4");
+    videoBrotherFull.setAttribute("id", "Brotherlong");
+    videoBrotherFull.style.width = "123px";
+    videoBrotherFull.style.height = "300px";
+    div3.appendChild(videoBrotherFull);
+    videoBrotherFull.play();
+    videoBrotherFull.loop = true;
+    let div4 = document.querySelector("#vid4");
+    let videoTakeFull = document.createElement("video");
+    videoTakeFull.setAttribute("src", "vids/TakeFullVid.mp4");
+    videoTakeFull.setAttribute("id", "Takelong");
+    videoTakeFull.style.width = "123px";
+    videoTakeFull.style.height = "300px";
+    div4.appendChild(videoTakeFull);
+    videoTakeFull.play();
+    videoTakeFull.loop = true;
 }
 function stop() {
     console.log("thanks!");
@@ -179,8 +207,16 @@ function stop() {
     cover.remove();
     let confeti = document.getElementById("confetti");
     confeti.remove();
-    let testVideo = document.getElementById("long");
-    testVideo.remove();
+    let videoNeverFull = document.getElementById("Neverlong");
+    videoNeverFull.remove();
+    let videoManiacFull = document.getElementById("Maniaclong");
+    videoManiacFull.remove();
+    let videoBrotherFull = document.getElementById("Brotherlong");
+    videoBrotherFull.remove();
+    let videoTakeFull = document.getElementById("Takelong");
+    videoTakeFull.remove();
+    let music = document.getElementById(ident);
+    music.pause();
     let marker1 = document.getElementById("sound1BT");
     let marker2 = document.getElementById("sound2BT");
     let marker3 = document.getElementById("sound3BT");
@@ -213,5 +249,8 @@ function waveGone() {
 function random() {
     let x = (Math.floor(Math.random() * 4 + 1));
     return x;
+}
+for (let wewi = 1; wewi <= 64; wewi * 2) {
+    console.log(wewi);
 }
 //# sourceMappingURL=id.js.map
