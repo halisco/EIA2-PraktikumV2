@@ -147,7 +147,7 @@ var L02b;
     }
     function removeElement1() {
         if (activeCardsName[0] == activeCardsName[1]) { //Habe keine richtige Lösung gefunden, Id war das einzige was funktioniert hat.
-            let rem1 = document.getElementsByName(activeCards[0].id);
+            let rem1 = document.getElementsByName(activeCardsName[0]);
             console.log(rem1);
             rem1[0].classList.remove("front");
             rem1[0].classList.add("gone");

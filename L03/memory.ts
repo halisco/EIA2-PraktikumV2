@@ -22,7 +22,7 @@ namespace L02b {
     let tempColor: String = "";                                 //Zwischenspeicher für Kartenfarbe
     let cardNr: number = 0;                                     //Speicherort für Kartenpaar-Anzahl
     let activeCards: HTMLElement [] = [];                       //Array Zwischenspeicher zum Abfragen der Karten
-    let activeCardsName: String [] = [];
+    let activeCardsName: string [] = [];
     let doneCards: HTMLElement [] = [];                         //Wichtig für function congrats() Speicherort für alert
 
 
@@ -147,7 +147,7 @@ namespace L02b {
     elem.classList.remove("back");
     elem.classList.add("front");
     elem.removeEventListener("click", Frontclass);
-    let nameOf: String = String(elem.getAttribute("name"));
+    let nameOf: string = String(elem.getAttribute("name"));
     activeCardsName.push(nameOf);
     activeCards.push(elem);         //Schwierigkeiten: Konnte den Einträge des Arrays in keine sinnvollen Namen geben, 
     }                               // Array vom Typ HTMLElement konnte weder class noch name zugeordnet werden
@@ -175,7 +175,7 @@ namespace L02b {
     function removeElement1(): void {                           //Dadurch ist das entstanden... nicht schön aber auch nicht gewollt.
         if (activeCardsName[0] == activeCardsName[1]) {           //Habe keine richtige Lösung gefunden, Id war das einzige was funktioniert hat.
                                                                 
-            let rem1: NodeListOf<HTMLElement> = document.getElementsByName(activeCards[0].id);
+            let rem1: NodeListOf<HTMLElement> = document.getElementsByName(activeCardsName[0]);
             console.log(rem1);
             rem1[0].classList.remove("front");
             rem1[0].classList.add("gone");
