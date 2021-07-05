@@ -4,7 +4,7 @@ namespace end {
         speed: number;
 
         constructor(_pos: Vector) {
-            this.position = _pos;
+            this.position = _pos.copy();
         }
 
         draw(): void {
@@ -20,13 +20,14 @@ namespace end {
             console.log("testball");
         }
 
-        shot(_event: MouseEvent): void {
+        shot(_pos: Vector): void {
             if (stop == false) {
-            let x: number = _event.screenX;
-            let y: number = _event.screenY;
-            console.log(x, y);
-            this.position.x = x;
-            this.position.y = y;
+            //let x: number = _pos.screenX;
+            //let y: number = _pos.screenY;
+            //console.log(x, y);
+            //this.position.x = x;
+            //this.position.y = y;
+            this.position = _pos.copy();
             }
            
         }

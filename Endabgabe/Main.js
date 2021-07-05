@@ -15,9 +15,14 @@ var end;
         imageData = end.crc2.getImageData(0, 0, end.canvas.width, end.canvas.height);
         generatePlayer();
         let field = document.getElementById("can");
-        field.addEventListener("click", end.ball.shot);
+        field.addEventListener("click", shotBall);
         console.log(end.ball.position.x, end.ball.position.y);
         window.setInterval(animate, 50);
+    }
+    function shotBall(_event) {
+        let x = _event.screenX;
+        let y = _event.screenY;
+        end.ball.shot(new end.Vector(x, y));
     }
     function generatePlayer() {
         for (let i = 0; i <= 21; i++) {
@@ -37,17 +42,17 @@ var end;
         end.ball = fotball;
     }
     function animate() {
-        if (end.stop == true) {
-            //requestAnimationFrame(animate);
-            end.crc2.fillRect(0, 0, end.crc2.canvas.width, end.crc2.canvas.height);
-            end.crc2.putImageData(imageData, 0, 0);
-            for (let player of end.players) {
+        //requestAnimationFrame(animate);
+        end.crc2.fillRect(0, 0, end.crc2.canvas.width, end.crc2.canvas.height);
+        end.crc2.putImageData(imageData, 0, 0);
+        for (let player of end.players) {
+            if (end.stop == true) {
                 player.move();
-                player.draw();
             }
-            for (let reff of reffs) {
-                reff.draw();
-            }
+            player.draw();
+        }
+        for (let reff of reffs) {
+            reff.draw();
         }
         end.ball.draw();
     }

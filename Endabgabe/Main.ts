@@ -23,10 +23,16 @@ namespace end {
         generatePlayer();
         
         let field: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("can");
-        field.addEventListener("click", ball.shot);
+        field.addEventListener("click", shotBall);
   
         console.log(ball.position.x, ball.position.y);
         window.setInterval(animate, 50);
+    }
+
+    function shotBall(_event: MouseEvent): void {
+        let x: number = _event.screenX;
+        let y: number = _event.screenY;
+        ball.shot(new Vector(x, y));
     }
 
     function generatePlayer(): void {
@@ -57,25 +63,23 @@ namespace end {
     }
 
     function animate(): void {
-        if (stop == true) {
+       
+         //requestAnimationFrame(animate);
+        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+        crc2.putImageData(imageData, 0, 0);
 
-            //requestAnimationFrame(animate);
-            crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-            crc2.putImageData(imageData, 0, 0);
-
-            for (let player of players) {
-                player.move();
-                player.draw();
-                
+        for (let player of players) {
+            if ( stop == true) {
+             player.move();
             }
-            
+            player.draw();
+             
+         }
+         
 
-            for (let reff of reffs) {
-                reff.draw();
-            }
-
-            
-        } 
+        for (let reff of reffs) {
+             reff.draw();
+         }
         ball.draw();
     }
 

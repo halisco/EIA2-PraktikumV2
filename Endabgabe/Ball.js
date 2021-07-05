@@ -3,7 +3,7 @@ var end;
 (function (end) {
     class Ball {
         constructor(_pos) {
-            this.position = _pos;
+            this.position = _pos.copy();
         }
         draw() {
             end.crc2.translate(this.position.x, this.position.y);
@@ -17,13 +17,14 @@ var end;
             end.crc2.resetTransform();
             console.log("testball");
         }
-        shot(_event) {
+        shot(_pos) {
             if (end.stop == false) {
-                let x = _event.screenX;
-                let y = _event.screenY;
-                console.log(x, y);
-                this.position.x = x;
-                this.position.y = y;
+                //let x: number = _pos.screenX;
+                //let y: number = _pos.screenY;
+                //console.log(x, y);
+                //this.position.x = x;
+                //this.position.y = y;
+                this.position = _pos.copy();
             }
         }
     }
