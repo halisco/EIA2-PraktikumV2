@@ -119,16 +119,15 @@ var end;
         end.crc2.closePath();
     }
     end.pitch = pitch;
-    function ball() {
-        end.crc2.translate(end.canvas.width / 2, end.canvas.height / 2);
-        end.crc2.moveTo(7, 0);
-        end.crc2.arc(0, 0, 7, 0, 2 * Math.PI);
-        end.crc2.lineWidth = 1;
-        end.crc2.fillStyle = "violet";
-        end.crc2.fill();
-        end.crc2.stroke();
-        end.crc2.resetTransform();
-    }
-    end.ball = ball;
+    //  export function ball(): void {
+    //    crc2.translate(canvas.width / 2, canvas.height / 2);
+    //    crc2.moveTo(7, 0);
+    //    crc2.arc(0, 0, 7, 0, 2 * Math.PI);
+    //    crc2.lineWidth = 1;
+    //    crc2.fillStyle = "violet";
+    //    crc2.fill();
+    //    crc2.stroke();
+    //    crc2.resetTransform();
+    //}
 })(end || (end = {}));
 //# sourceMappingURL=pitch.js.map

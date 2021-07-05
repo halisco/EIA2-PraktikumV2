@@ -4,15 +4,29 @@ namespace end {
     export let crc2: CanvasRenderingContext2D;
     export let canvas: HTMLCanvasElement;
 
-    let pos: number [][] = [[30, 235], [100, 100], [140, 220], [300, 300], [410, 370], [600, 100], [670, 380], [70, 350], [540, 270], [340, 140], [220, 400], [735, 235], [520, 170], [550, 390], [640, 305], [700, 140], [400, 270], [230, 50], [160, 320], [460, 60], [80, 430], [200, 200] ];
-    export let players: Player[] = [];
+    let pos: number [][] = [[50, 260], [120, 125], [160, 245], [320, 325], [430, 395], [620, 125], [690, 405], [90, 375], [560, 295], [390, 195], [240, 425], [755, 260], [540, 195], [570, 415], [660, 330], [720, 165], [420, 295], [250, 75], [180, 345], [480, 85], [100, 455], [220, 225] ];
+    let posReff: number [] [] = [[10, 0], [750, 470], [420, 210]];
+    let reffs: Reff[] = [];
+    export let players: Person[] = [];
+    export let ball: Ball;
+    export let stop: boolean = true;
+    let imageData: ImageData;
 
     function handleLoad(): void {
         canvas = document.querySelector("canvas")!;
         crc2 = canvas.getContext("2d")!;
+
+        
+
         pitch();
+        imageData = crc2.getImageData(0, 0, canvas.width, canvas.height);
         generatePlayer();
-        ball();
+        
+        let field: HTMLCanvasElement = <HTMLCanvasElement>document.getElementById("can");
+        field.addEventListener("click", ball.shot);
+  
+        console.log(ball.position.x, ball.position.y);
+        window.setInterval(animate, 50);
     }
 
     function generatePlayer(): void {
@@ -21,14 +35,48 @@ namespace end {
         let player: Player = new Player(new Vector(pos[i][0], pos[i][1]));
         player.draw();
         players.push(player);
+        console.log(player.position.x);
         }
-        let leftReff: Reff = new Reff(new Vector(10, 0));
-        leftReff.draw();
-        let rightReff: Reff = new Reff(new Vector(750, 470));
-        rightReff.draw();
-        let mainReff: Reff = new Reff(new Vector(420, 210));
-        mainReff.draw();
+        console.log(players);
+
+        for (let i: number = 0; i <= 2; i++) {
+        let reff: Reff = new Reff(new Vector(posReff[i][0], posReff[i][1]));
+        reff.draw();
+        reffs.push(reff);
+        }
+
+        let fotball: Ball = new Ball(new Vector(380, canvas.height / 2));
+        fotball.draw();
+        ball = fotball;
+
         
+        
+        
+        
+        
+    }
+
+    function animate(): void {
+        if (stop == true) {
+
+            //requestAnimationFrame(animate);
+            crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+            crc2.putImageData(imageData, 0, 0);
+
+            for (let player of players) {
+                player.move();
+                player.draw();
+                
+            }
+            
+
+            for (let reff of reffs) {
+                reff.draw();
+            }
+
+            
+        } 
+        ball.draw();
     }
 
     

@@ -1,12 +1,13 @@
 namespace end {
-    export class Reff {
+    export class Reff extends Person {
         position: Vector;
 
         constructor(_pos: Vector) {
+            super(_pos);
             this.position = _pos;
         }
 
-        draw() {
+        draw(): void {
             crc2.translate(this.position.x, this.position.y);
             let reff: Path2D = new Path2D();
             reff.moveTo(20, 25);

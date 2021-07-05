@@ -1,22 +1,23 @@
 namespace end {
-    export class Player {
+    export class Player extends Person {
         position: Vector;
         speed: number;
         direction: number;
         color: string;
 
         constructor(_pos: Vector) {
+            super(_pos);
             this.position = _pos;
 
-            if(players.length <= 10) {
+            if (players.length <= 10) {
                 this.color = "red";
             } else {
                 this.color = "blue";
             }
         }
 
-        draw() {
-            crc2.translate(this.position.x, this.position.y);
+        draw(): void {
+            crc2.translate(this.position.x - 20, this.position.y - 25); //Um Verschiebung beim zeichnen auszugleichen
             let player: Path2D = new Path2D();
             player.moveTo(20, 25);
             player.lineTo(20, 55);
@@ -43,5 +44,44 @@ namespace end {
             crc2.fillText(" 4", 14, 21);
             crc2.resetTransform();
         }
+
+        move(): void {
+            //console.log(ball.position.x, this.position.x);
+            let vergX: number = ball.position.x - this.position.x;
+            let realX: number = vergX;
+            let vergY: number = ball.position.y - this.position.y;
+            let realY: number = vergY;
+
+            if (vergX <= 0) {
+                vergX = vergX * (-1);
+            }
+            if (vergY <= 0) {
+                vergY = vergY * (-1);
+            }
+
+            
+            if (vergX <= 50 && vergY <= 105) {
+                if (vergX > 20 || vergY > 20) {
+
+                    if (realX > 0) {
+                        this.position.x += + 0.5; //austauschen mit FormElement
+                    } else if (realX < 0) {
+                        this.position.x += - 0.5; //austauschen mit FormElement
+                    }
+                    if (realY > 0) {
+                        this.position.y += + 0.5; //austauschen mit FormElement
+                    } else if (realY < 0) {
+                        this.position.y += - 0.5; //austauschen mit FormElement
+                    }
+
+                } else {
+                    console.log("Stop!");
+                    stop = false; 
+                }
+                
+            }
+        }
+
+        
     }
 }

@@ -1,8 +1,9 @@
 "use strict";
 var end;
 (function (end) {
-    class Player {
+    class Player extends end.Person {
         constructor(_pos) {
+            super(_pos);
             this.position = _pos;
             if (end.players.length <= 10) {
                 this.color = "red";
@@ -12,7 +13,7 @@ var end;
             }
         }
         draw() {
-            end.crc2.translate(this.position.x, this.position.y);
+            end.crc2.translate(this.position.x - 20, this.position.y - 25); //Um Verschiebung beim zeichnen auszugleichen
             let player = new Path2D();
             player.moveTo(20, 25);
             player.lineTo(20, 55);
@@ -38,6 +39,39 @@ var end;
             end.crc2.font = "10px Arial";
             end.crc2.fillText(" 4", 14, 21);
             end.crc2.resetTransform();
+        }
+        move() {
+            //console.log(ball.position.x, this.position.x);
+            let vergX = end.ball.position.x - this.position.x;
+            let realX = vergX;
+            let vergY = end.ball.position.y - this.position.y;
+            let realY = vergY;
+            if (vergX <= 0) {
+                vergX = vergX * (-1);
+            }
+            if (vergY <= 0) {
+                vergY = vergY * (-1);
+            }
+            if (vergX <= 50 && vergY <= 105) {
+                if (vergX > 20 || vergY > 20) {
+                    if (realX > 0) {
+                        this.position.x += +0.5; //austauschen mit FormElement
+                    }
+                    else if (realX < 0) {
+                        this.position.x += -0.5; //austauschen mit FormElement
+                    }
+                    if (realY > 0) {
+                        this.position.y += +0.5; //austauschen mit FormElement
+                    }
+                    else if (realY < 0) {
+                        this.position.y += -0.5; //austauschen mit FormElement
+                    }
+                }
+                else {
+                    console.log("Stop!");
+                    end.stop = false;
+                }
+            }
         }
     }
     end.Player = Player;

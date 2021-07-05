@@ -1,8 +1,9 @@
 "use strict";
 var end;
 (function (end) {
-    class Reff {
+    class Reff extends end.Person {
         constructor(_pos) {
+            super(_pos);
             this.position = _pos;
         }
         draw() {
