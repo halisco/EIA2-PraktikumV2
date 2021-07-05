@@ -5,6 +5,7 @@ namespace end {
 
         constructor(_pos: Vector) {
             this.position = _pos.copy();
+            console.log("create ball");
         }
 
         draw(): void {
@@ -21,7 +22,7 @@ namespace end {
         }
 
         shot(_pos: Vector): void {
-            if (stop == false) {
+            if (stop == true) {
             //let x: number = _pos.screenX;
             //let y: number = _pos.screenY;
             //console.log(x, y);

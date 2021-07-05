@@ -4,6 +4,7 @@ var end;
     class Ball {
         constructor(_pos) {
             this.position = _pos.copy();
+            console.log("create ball");
         }
         draw() {
             end.crc2.translate(this.position.x, this.position.y);
@@ -18,7 +19,7 @@ var end;
             console.log("testball");
         }
         shot(_pos) {
-            if (end.stop == false) {
+            if (end.stop == true) {
                 //let x: number = _pos.screenX;
                 //let y: number = _pos.screenY;
                 //console.log(x, y);

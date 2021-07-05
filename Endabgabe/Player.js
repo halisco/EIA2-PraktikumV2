@@ -69,7 +69,7 @@ var end;
                 }
                 else {
                     console.log("Stop!");
-                    end.stop = false;
+                    end.stop = true;
                 }
             }
         }

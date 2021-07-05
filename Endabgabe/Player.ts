@@ -76,7 +76,7 @@ namespace end {
 
                 } else {
                     console.log("Stop!");
-                    stop = false; 
+                    stop = true; 
                 }
                 
             }

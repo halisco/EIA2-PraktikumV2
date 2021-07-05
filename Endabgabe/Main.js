@@ -6,7 +6,7 @@ var end;
     let posReff = [[10, 0], [750, 470], [420, 210]];
     let reffs = [];
     end.players = [];
-    end.stop = true;
+    end.stop = false;
     let imageData;
     function handleLoad() {
         end.canvas = document.querySelector("canvas");
@@ -14,15 +14,17 @@ var end;
         end.pitch();
         imageData = end.crc2.getImageData(0, 0, end.canvas.width, end.canvas.height);
         generatePlayer();
-        let field = document.getElementById("can");
-        field.addEventListener("click", shotBall);
+        end.canvas.addEventListener("click", shotBall);
         console.log(end.ball.position.x, end.ball.position.y);
         window.setInterval(animate, 50);
     }
     function shotBall(_event) {
-        let x = _event.screenX;
-        let y = _event.screenY;
+        let rect = end.canvas.getBoundingClientRect();
+        let x = _event.clientX - rect.left;
+        let y = _event.clientY - rect.top;
+        console.log(x, y);
         end.ball.shot(new end.Vector(x, y));
+        end.stop = false;
     }
     function generatePlayer() {
         for (let i = 0; i <= 21; i++) {
@@ -46,7 +48,7 @@ var end;
         end.crc2.fillRect(0, 0, end.crc2.canvas.width, end.crc2.canvas.height);
         end.crc2.putImageData(imageData, 0, 0);
         for (let player of end.players) {
-            if (end.stop == true) {
+            if (end.stop == false) {
                 player.move();
             }
             player.draw();
