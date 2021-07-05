@@ -3,8 +3,10 @@ var end;
 (function (end) {
     class Ball {
         constructor(_pos) {
+            this.speed = 10;
             this.position = _pos.copy();
             console.log("create ball");
+            this.newPos = _pos.copy();
         }
         draw() {
             end.crc2.translate(this.position.x, this.position.y);
@@ -25,8 +27,15 @@ var end;
                 //console.log(x, y);
                 //this.position.x = x;
                 //this.position.y = y;
-                this.position = _pos.copy();
+                this.newPos = _pos.copy();
             }
+        }
+        move() {
+            let directionX = this.newPos.x - this.position.x;
+            let directionY = this.newPos.y - this.position.y;
+            let direction = new end.Vector(directionX, directionY);
+            direction.scale(this.speed);
+            this.position.add(direction);
         }
     }
     end.Ball = Ball;

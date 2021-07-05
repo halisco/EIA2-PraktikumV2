@@ -1,11 +1,13 @@
 namespace end {
     export class Ball {
         position: Vector;
-        speed: number;
+        speed: number = 10;
+        newPos: Vector;
 
         constructor(_pos: Vector) {
             this.position = _pos.copy();
             console.log("create ball");
+            this.newPos = _pos.copy();
         }
 
         draw(): void {
@@ -28,9 +30,17 @@ namespace end {
             //console.log(x, y);
             //this.position.x = x;
             //this.position.y = y;
-            this.position = _pos.copy();
+            this.newPos = _pos.copy();
             }
            
+        }
+
+        move(): void {
+            let directionX: number = this.newPos.x - this.position.x;
+            let directionY: number = this.newPos.y - this.position.y;
+            let direction: Vector = new Vector(directionX, directionY);
+            direction.scale(this.speed);
+            this.position.add(direction);
         }
 
     }
