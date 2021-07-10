@@ -11,6 +11,12 @@ var end;
         move() {
             //
         }
+        moveBack() {
+            //
+        }
+        playerCard(_vergleich) {
+            //
+        }
     }
     end.Person = Person;
 })(end || (end = {}));

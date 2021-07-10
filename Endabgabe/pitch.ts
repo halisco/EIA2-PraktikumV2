@@ -54,7 +54,7 @@ namespace end {
       crc2.lineTo(0, (canvas.height / 2) - 22);
       crc2.lineTo(10, (canvas.height / 2) - 22);
       crc2.lineWidth = 2;
-      crc2.fillStyle = "red";
+      crc2.fillStyle = "black";
       crc2.fill();
       crc2.stroke();
       crc2.closePath();
@@ -94,7 +94,7 @@ namespace end {
       crc2.lineTo(canvas.width, (canvas.height / 2) - 22);
       crc2.lineTo(canvas.width - 10, (canvas.height / 2) - 22);
       crc2.lineWidth = 2;
-      crc2.fillStyle = "blue";
+      crc2.fillStyle = "black";
       crc2.fill();
       crc2.stroke();
       crc2.closePath();

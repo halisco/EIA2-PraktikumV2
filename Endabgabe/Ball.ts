@@ -1,8 +1,9 @@
 namespace end {
     export class Ball {
         position: Vector;
-        speed: number = 10;
+        speed: number = 0.1;
         newPos: Vector;
+        balance: Vector;
 
         constructor(_pos: Vector) {
             this.position = _pos.copy();
@@ -25,11 +26,6 @@ namespace end {
 
         shot(_pos: Vector): void {
             if (stop == true) {
-            //let x: number = _pos.screenX;
-            //let y: number = _pos.screenY;
-            //console.log(x, y);
-            //this.position.x = x;
-            //this.position.y = y;
             this.newPos = _pos.copy();
             }
            

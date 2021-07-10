@@ -17,5 +17,13 @@ namespace end {
             //
         }
 
+        moveBack(): void {
+            //
+        }
+
+        playerCard(_vergleich: number): void {
+            //
+        }
+
     }
 }
