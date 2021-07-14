@@ -16,6 +16,7 @@ var end;
             end.crc2.translate(this.position.x, this.position.y);
             end.crc2.beginPath();
             end.crc2.arc(0, 0, 7, 0, 2 * Math.PI);
+            end.crc2.closePath();
             end.crc2.lineWidth = 1;
             end.crc2.fillStyle = "violet";
             end.crc2.strokeStyle = "black";

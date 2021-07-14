@@ -19,6 +19,7 @@ namespace end {
             crc2.translate(this.position.x, this.position.y);
             crc2.beginPath();
             crc2.arc(0, 0, 7, 0, 2 * Math.PI);
+            crc2.closePath();
             crc2.lineWidth = 1;
             crc2.fillStyle = "violet";
             crc2.strokeStyle = "black";
