@@ -20,11 +20,8 @@ var end;
         copy() {
             return new Vector(this.x, this.y);
         }
-        random(_minLength, _maxLength) {
-            let length = _minLength + Math.random() * (_maxLength - _minLength);
-            let direction = Math.random() * 2 * Math.PI;
-            this.set(Math.cos(direction), Math.sin(direction));
-            this.scale(length);
+        length() {
+            return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
         }
     }
     end.Vector = Vector;

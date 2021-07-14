@@ -5,15 +5,15 @@ var end;
     end.homeColor = "#FFFFFF";
     end.awayColor = "#0000FF";
     end.pace = 0.08;
-    end.shotMin = 60;
-    end.shotMax = 100;
+    end.shotMin = 0.8;
+    end.shotMax = 1.2;
     let numbers = [1, 3, 4, 5, 8, 6, 10, 22, 14, 9, 7, 1, 4, 2, 3, 6, 11, 7, 10, 17, 9, 21];
     end.name = [["Neuer", "TW", "de"], ["Hummels", "IV", "de"], ["Virgil", "IV", "nl"], ["Chiellini", "IV", "it"], ["Gnabry", "RM", "de"], ["Veratti", "ZDM", "it"], ["Sane", "LM", "de"], ["Sancho", "ZOM", "en"], ["Hazard", "LF", "be"], ["Bale", "RF", "wl"], ["Ronaldo", "ST", "pr"], ["Sommer", "TW", "sw"], ["Ramos", "IV", "sp"], ["Alaba", "IV", "oe"], ["Varan", "IV", "fr"], ["Kimmich", "ZDM", "de"], ["De Bruyne", "ZOM", "be"], ["Pogba", "ZM", "fr"], ["Insigne", "LM", "it"], ["Rashford", "RM", "en"], ["Mbappe", "ST", "fr"], ["Kane", "ST", "en"]];
     let pos = [[50, 260], [120, 125], [160, 245], [90, 375], [240, 425], [320, 325], [390, 195], [430, 395], [620, 125], [690, 405], [560, 295], [755, 260], [570, 415], [660, 330], [720, 165], [540, 195], [420, 295], [480, 85], [250, 75], [100, 455], [180, 345], [220, 225]];
     let posReff = [[10, 0], [750, 470], [420, 210]];
-    end.reffs = [];
-    end.players = [];
-    end.stop = false;
+    let reffName = ["LS", "RS", " S"];
+    end.persons = [];
+    let playerOnBall;
     let imageData;
     function handleLoad() {
         end.canvas = document.querySelector("canvas"); //canvas erstellen
@@ -43,7 +43,7 @@ var end;
             end.shotMax = Number(target.value);
         }
     }
-    function los() {
+    function los(_event) {
         let starter = document.getElementById("starter");
         starter.innerHTML = "reload";
         starter.addEventListener("click", function () { window.location.reload(); });
@@ -58,45 +58,70 @@ var end;
     }
     function generatePlayer() {
         for (let i = 0; i <= 21; i++) {
-            let player = new end.Player(new end.Vector(pos[i][0], pos[i][1]), numbers[i]);
+            let player = new end.Player(new end.Vector(pos[i][0], pos[i][1]), numbers[i], end.name[i][0]);
             player.draw();
-            end.players.push(player);
-            console.log(player.position.x);
+            end.persons.push(player);
         }
-        console.log(end.players);
+        console.log(end.persons);
         for (let i = 0; i <= 2; i++) {
-            let reff = new end.Reff(new end.Vector(posReff[i][0], posReff[i][1]));
+            let reff = new end.Reff(new end.Vector(posReff[i][0], posReff[i][1]), reffName[i]);
             reff.draw();
-            end.reffs.push(reff);
+            end.persons.push(reff);
         }
-        let fotball = new end.Ball(new end.Vector(380, end.canvas.height / 2));
+        let fotball = new end.Ball(new end.Vector(end.canvas.width / 2, end.canvas.height / 2));
         fotball.draw();
         end.ball = fotball;
     }
+    function isPlayerOnBall() {
+        for (let person of end.persons) {
+            if (person.isOnBall()) {
+                playerOnBall = person;
+                if (playerOnBall.team == "home") {
+                    let span1 = document.getElementById("homeName");
+                    span1.innerHTML = playerOnBall.name.toString();
+                    span1.style.backgroundColor = playerOnBall.color;
+                    span1.style.textShadow = "2px 2px 5px black";
+                }
+                else {
+                    let span2 = document.getElementById("awayName");
+                    span2.innerHTML = playerOnBall.name.toString();
+                    span2.style.backgroundColor = playerOnBall.color;
+                    span2.style.textShadow = "2px 2px 5px black";
+                }
+                return true;
+            }
+        }
+        return false;
+    }
     function animate() {
-        //requestAnimationFrame(animate);
         end.crc2.fillRect(0, 0, end.crc2.canvas.width, end.crc2.canvas.height);
         end.crc2.putImageData(imageData, 0, 0);
-        for (let player of end.players) {
-            if (end.stop == false) {
-                player.move();
+        if (end.ball.isMoving == false && isPlayerOnBall() == false) {
+            for (let person of end.persons) {
+                person.move();
+                person.draw();
             }
-            player.draw();
+        }
+        else {
+            for (let person of end.persons) {
+                person.draw();
+            }
         }
         end.ball.move();
         end.ball.draw();
-        for (let reff of end.reffs) {
-            reff.draw();
-        }
     }
     function shotBall(_event) {
+        if (isPlayerOnBall() == false || end.ball.isMoving) {
+            console.log("no Shot!");
+            return;
+        }
         let rect = end.canvas.getBoundingClientRect();
         let x = _event.clientX - rect.left;
         let y = _event.clientY - rect.top;
-        console.log(x, y);
+        x *= playerOnBall.balance;
+        y *= playerOnBall.balance;
+        console.log(playerOnBall);
         end.ball.shot(new end.Vector(x, y));
-        end.stop = false;
-        console.log(end.stop);
     }
     end.spieler1 = 0;
     end.spieler2 = 11;
@@ -104,17 +129,23 @@ var end;
         let elem = _event.target;
         let searchButton = String(elem.getAttribute("id"));
         if (searchButton == "next1") {
+            if (end.spieler1 >= 1) {
+                end.persons[end.spieler1 - 1].opacity = 1;
+            }
             if (end.spieler1 == 11) {
                 end.spieler1 = 0;
             }
-            end.players[end.spieler1].playerCard(1);
+            end.persons[end.spieler1].playerCard(1);
             end.spieler1++;
         }
         else {
+            if (end.spieler2 >= 1) {
+                end.persons[end.spieler2 - 1].opacity = 1;
+            }
             if (end.spieler2 == 22) {
                 end.spieler2 = 11;
             }
-            end.players[end.spieler2].playerCard(2);
+            end.persons[end.spieler2].playerCard(2);
             end.spieler2++;
         }
     }

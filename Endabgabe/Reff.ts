@@ -1,10 +1,13 @@
 namespace end {
     export class Reff extends Person {
         position: Vector;
+        name: string;
+        speed: number;
 
-        constructor(_pos: Vector) {
+        constructor(_pos: Vector, _name: string) {
             super(_pos);
-            this.position = _pos;
+            this.speed = 0.02;
+            this.name = _name;
         }
 
         draw(): void {
@@ -32,8 +35,28 @@ namespace end {
             crc2.restore();
             crc2.fillStyle = "white";
             crc2.font = "10px Arial";
-            crc2.fillText(" S", 14, 21);
+            crc2.fillText(this.name, 14, 21);
             crc2.resetTransform();
+        }
+
+        move(): void {
+            if (this.name == "LS") {
+                if (ball.position.x <= 300) {
+                    let directionX: number = ball.position.x - this.position.x;
+                    directionX *= this.speed;
+                    this.position.x += directionX;
+                }
+            } else if (this.name == "RS") {
+                if (ball.position.x >= 500) {
+                    let directionX: number = ball.position.x - this.position.x;
+                    directionX *= this.speed;
+                    this.position.x += directionX;
+                }       
+            } else {
+                let directionX: number = ball.position.x - this.position.x;
+                directionX *= this.speed;
+                this.position.x += directionX;
+            }
         }
     }
 }

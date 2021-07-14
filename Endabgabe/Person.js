@@ -3,6 +3,7 @@ var end;
 (function (end) {
     class Person {
         constructor(_pos) {
+            this.balance = 0;
             this.position = _pos;
         }
         draw() {
@@ -13,6 +14,9 @@ var end;
         }
         moveBack() {
             //
+        }
+        isOnBall() {
+            return false;
         }
         playerCard(_vergleich) {
             //

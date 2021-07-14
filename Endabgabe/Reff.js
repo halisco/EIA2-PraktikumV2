@@ -2,9 +2,10 @@
 var end;
 (function (end) {
     class Reff extends end.Person {
-        constructor(_pos) {
+        constructor(_pos, _name) {
             super(_pos);
-            this.position = _pos;
+            this.speed = 0.02;
+            this.name = _name;
         }
         draw() {
             end.crc2.translate(this.position.x, this.position.y);
@@ -31,8 +32,29 @@ var end;
             end.crc2.restore();
             end.crc2.fillStyle = "white";
             end.crc2.font = "10px Arial";
-            end.crc2.fillText(" S", 14, 21);
+            end.crc2.fillText(this.name, 14, 21);
             end.crc2.resetTransform();
+        }
+        move() {
+            if (this.name == "LS") {
+                if (end.ball.position.x <= 300) {
+                    let directionX = end.ball.position.x - this.position.x;
+                    directionX *= this.speed;
+                    this.position.x += directionX;
+                }
+            }
+            else if (this.name == "RS") {
+                if (end.ball.position.x >= 500) {
+                    let directionX = end.ball.position.x - this.position.x;
+                    directionX *= this.speed;
+                    this.position.x += directionX;
+                }
+            }
+            else {
+                let directionX = end.ball.position.x - this.position.x;
+                directionX *= this.speed;
+                this.position.x += directionX;
+            }
         }
     }
     end.Reff = Reff;
