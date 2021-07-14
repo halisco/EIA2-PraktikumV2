@@ -92,8 +92,13 @@ h2 {
 }
 
 
-img {
+.flag {
+    margin-left: 15px;
+}
+
+.player {
     margin-top: 20px;
+    margin-right: 20px;
 }
 
 fieldset {
@@ -103,4 +108,13 @@ fieldset {
     margin-bottom: 3px;
     
 }
+
+#onBall {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#onBall1, #onBall2 {
+    font-size: 11px;   
+}
+
 

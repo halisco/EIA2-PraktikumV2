@@ -105,7 +105,9 @@ namespace end {
 
 
     function isPlayerOnBall(): boolean {
-        
+        let spanOnBall1: HTMLElement = document.getElementById("onBall1")!;
+        //let spanOnBall2: HTMLElement = document.getElementById("onBall2")!;
+
         for (let person of persons) {
             if (person.isOnBall()) {
                 playerOnBall = person;
@@ -114,11 +116,23 @@ namespace end {
                     span1.innerHTML = playerOnBall.name.toString();
                     span1.style.backgroundColor = playerOnBall.color;
                     span1.style.textShadow = "2px 2px 5px black";
+                    //spanOnBall2.innerHTML = "";
+                    spanOnBall1.innerHTML = "on Ball!";
+                    spanOnBall1.style.color = "red";
+                    spanOnBall1.style.marginLeft = "auto";
+                    spanOnBall1.style.marginRight = "15%";
                 } else {
                     let span2: HTMLElement = document.getElementById("awayName")!;
                     span2.innerHTML = playerOnBall.name.toString();
                     span2.style.backgroundColor = playerOnBall.color;
                     span2.style.textShadow = "2px 2px 5px black";
+                    spanOnBall1.innerHTML = "on Ball!";
+                    spanOnBall1.style.color = "red";
+                    spanOnBall1.style.marginLeft = "15%";
+                    spanOnBall1.style.marginRight = "auto";
+                    //spanOnBall1.innerHTML = "";
+                    //spanOnBall2.innerHTML = "on Ball!";
+                    //spanOnBall2.style.color = "red";
                 }
                 return true;
             }

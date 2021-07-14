@@ -130,7 +130,6 @@ namespace end {
             div.style.backgroundColor = homeColor.toString();
             let cardNumber: HTMLElement = document.createElement("h3");
             cardNumber.innerHTML = this.number.toString();
-            cardNumber.setAttribute("class", "number");
             cardNumber.style.textShadow = "2px 2px 5px black";
             div.appendChild(cardNumber);
             let cardName: HTMLElement = document.createElement("h3");
@@ -143,9 +142,10 @@ namespace end {
             div.appendChild(cardPos);
             let cardImg: HTMLElement =  document.createElement("img");
             cardImg.setAttribute("src", "Flags/" + name[spieler1][2].toString() + ".png");
+            cardImg.setAttribute("class", "flag");
             cardImg.style.width = "30px";
             cardImg.style.height = "20px";
-            div.appendChild(cardImg);
+            cardPos.appendChild(cardImg);
             let cardSpeed: HTMLElement =  document.createElement("p");
             cardSpeed.innerHTML = "Pace: " + Math.floor(this.speed * 1000);
             cardSpeed.style.textShadow = "2px 2px 5px black";
@@ -156,6 +156,7 @@ namespace end {
             div.appendChild(cardBalance);
             let cardImg2: HTMLElement =  document.createElement("img");
             cardImg2.setAttribute("src", "Players/" + name[spieler1][0].toString() + ".png");
+            cardImg2.setAttribute("class", "player");
             cardImg2.style.width = "161px";
             cardImg2.style.height = "189px";
             div.appendChild(cardImg2);
@@ -169,7 +170,6 @@ namespace end {
                 let cardNumber: HTMLElement = document.createElement("h3");
                 cardNumber.innerHTML = this.number.toString();
                 cardNumber.style.textShadow = "2px 2px 5px black";
-                cardNumber.setAttribute("class", "number");
                 div.appendChild(cardNumber);
                 let cardName: HTMLElement = document.createElement("h3");
                 cardName.innerHTML = this.name.toString();
@@ -181,9 +181,10 @@ namespace end {
                 div.appendChild(cardPos);
                 let cardImg: HTMLElement =  document.createElement("img");
                 cardImg.setAttribute("src", "Flags/" + name[spieler2][2].toString() + ".png");
+                cardImg.setAttribute("class", "flag");
                 cardImg.style.width = "30px";
                 cardImg.style.height = "20px";
-                div.appendChild(cardImg);
+                cardPos.appendChild(cardImg);
                 let cardSpeed: HTMLElement =  document.createElement("p");
                 cardSpeed.innerHTML = "Pace: " + Math.floor(this.speed * 1000);
                 cardSpeed.style.textShadow = "2px 2px 5px black";
@@ -194,6 +195,7 @@ namespace end {
                 div.appendChild(cardBalance);
                 let cardImg2: HTMLElement =  document.createElement("img");
                 cardImg2.setAttribute("src", "Players/" + name[spieler2][0].toString() + ".png");
+                cardImg2.setAttribute("class", "player");
                 cardImg2.style.width = "161px";
                 cardImg2.style.height = "189px";
                 div.appendChild(cardImg2);
