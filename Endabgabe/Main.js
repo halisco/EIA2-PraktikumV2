@@ -24,6 +24,10 @@ var end;
         forms.addEventListener("change", handleChange);
         let starter = document.getElementById("starter");
         starter.addEventListener("click", los);
+        let cardButton1 = document.getElementById("next1"); //Spielerinfo button (1. Team) mit Click Listener anlegen
+        cardButton1.addEventListener("click", nextCard); //Spielerinfo Inhalte (1. Team) generieren
+        let cardButton2 = document.getElementById("next2"); //Spielerinfo button (2. Team) mit Click Listener anlegen
+        cardButton2.addEventListener("click", nextCard);
     }
     function handleChange(_event) {
         let target = _event.target;
@@ -49,10 +53,10 @@ var end;
         starter.addEventListener("click", function () { window.location.reload(); });
         generatePlayer(); //Player, Schiri und Ball generieren
         end.canvas.addEventListener("click", shotBall); //Dem Ball den Click Listener geben
-        let cardButton1 = document.getElementById("next1"); //Spielerinfo button (1. Team) mit Click Listener anlegen
-        cardButton1.addEventListener("click", nextCard); //Spielerinfo Inhalte (1. Team) generieren
-        let cardButton2 = document.getElementById("next2"); //Spielerinfo button (2. Team) mit Click Listener anlegen
-        cardButton2.addEventListener("click", nextCard); //Spielerinfo Inhalte (2. Team) generieren
+        //let cardButton1: HTMLElement = document.getElementById("next1")!;           //Spielerinfo button (1. Team) mit Click Listener anlegen
+        //cardButton1.addEventListener("click", nextCard);                            //Spielerinfo Inhalte (1. Team) generieren
+        //let cardButton2: HTMLElement = document.getElementById("next2")!;           //Spielerinfo button (2. Team) mit Click Listener anlegen
+        //cardButton2.addEventListener("click", nextCard);                            //Spielerinfo Inhalte (2. Team) generieren
         //console.log(ball.position.x, ball.position.y);
         window.setInterval(animate, 50); //Spieler und Ball animieren
     }
@@ -73,8 +77,7 @@ var end;
         end.ball = fotball;
     }
     function isPlayerOnBall() {
-        let spanOnBall1 = document.getElementById("onBall1");
-        //let spanOnBall2: HTMLElement = document.getElementById("onBall2")!;
+        let spanOnBall = document.getElementById("onBall1");
         for (let person of end.persons) {
             if (person.isOnBall()) {
                 playerOnBall = person;
@@ -83,24 +86,20 @@ var end;
                     span1.innerHTML = playerOnBall.name.toString();
                     span1.style.backgroundColor = playerOnBall.color;
                     span1.style.textShadow = "2px 2px 5px black";
-                    //spanOnBall2.innerHTML = "";
-                    spanOnBall1.innerHTML = "on Ball!";
-                    spanOnBall1.style.color = "red";
-                    spanOnBall1.style.marginLeft = "auto";
-                    spanOnBall1.style.marginRight = "15%";
+                    spanOnBall.innerHTML = "on Ball!";
+                    spanOnBall.style.color = "red";
+                    spanOnBall.style.marginLeft = "auto";
+                    spanOnBall.style.marginRight = "15%";
                 }
                 else {
                     let span2 = document.getElementById("awayName");
                     span2.innerHTML = playerOnBall.name.toString();
                     span2.style.backgroundColor = playerOnBall.color;
                     span2.style.textShadow = "2px 2px 5px black";
-                    spanOnBall1.innerHTML = "on Ball!";
-                    spanOnBall1.style.color = "red";
-                    spanOnBall1.style.marginLeft = "15%";
-                    spanOnBall1.style.marginRight = "auto";
-                    //spanOnBall1.innerHTML = "";
-                    //spanOnBall2.innerHTML = "on Ball!";
-                    //spanOnBall2.style.color = "red";
+                    spanOnBall.innerHTML = "on Ball!";
+                    spanOnBall.style.color = "red";
+                    spanOnBall.style.marginLeft = "15%";
+                    spanOnBall.style.marginRight = "auto";
                 }
                 return true;
             }
@@ -142,6 +141,13 @@ var end;
     function nextCard(_event) {
         let elem = _event.target;
         let searchButton = String(elem.getAttribute("id"));
+        if (end.persons.length == 0) {
+            elem.innerHTML = "Start game first!";
+            return;
+        }
+        else {
+            elem.innerHTML = "Next!";
+        }
         if (searchButton == "next1") {
             if (end.spieler1 >= 1) {
                 end.persons[end.spieler1 - 1].opacity = 1;

@@ -43,17 +43,17 @@ var end;
             let span2 = document.getElementById("awayScore");
             //HeimTor Koordinaten
             if (this.position.x <= 10 && this.position.y >= (end.canvas.height / 2) - 22 && this.position.y <= (end.canvas.height / 2) + 22) {
-                this.scoreHome++;
-                span1.innerHTML = this.scoreHome.toString();
-                console.log(String(this.scoreHome));
+                this.scoreAway++;
+                span2.innerHTML = this.scoreAway.toString();
+                console.log(String(this.scoreAway));
                 alert("GOAL!  " + span1.innerHTML + "-" + span2.innerHTML);
                 this.newPos = new end.Vector(end.canvas.width / 2, end.canvas.height / 2);
             }
             //AuswärtsTor Koordinaten
             if (this.position.x >= end.canvas.width - 10 && this.position.y >= (end.canvas.height / 2) - 22 && this.position.y <= (end.canvas.height / 2) + 22) {
-                this.scoreAway++;
-                span2.innerHTML = this.scoreAway.toString();
-                console.log(String(this.scoreAway));
+                this.scoreHome++;
+                span1.innerHTML = this.scoreHome.toString();
+                console.log(String(this.scoreHome));
                 alert("GOAL!  " + span1.innerHTML + "-" + span2.innerHTML);
                 this.newPos = new end.Vector(end.canvas.width / 2, end.canvas.height / 2);
             }
