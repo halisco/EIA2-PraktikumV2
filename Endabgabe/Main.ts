@@ -95,6 +95,7 @@ namespace end {
 
         if (min == 5 && sec == 0) {
             alert("Halftime!");
+            ball.newPos = new Vector(canvas.width / 2, canvas.height / 2);
         }
         if (min == 10 && sec == 0) {
             alert("End of Game! Score: " + document.getElementById("homeScore")?.innerHTML + "-" + document.getElementById("awayScore")?.innerHTML);

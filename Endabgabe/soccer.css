@@ -45,6 +45,7 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
+    margin-top: -20px;
 }
 
 #homeScore, #awayScore {
@@ -140,6 +141,11 @@ fieldset {
     font-family: 'Audiowide', cursive;
     margin-left: 51%;
     margin-top: -10px;
+}
+
+#info {
+    text-align: center;
+    font-family: 'Audiowide', cursive;
 }
 
 

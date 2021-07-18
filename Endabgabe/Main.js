@@ -69,6 +69,7 @@ var end;
         document.getElementById("time").textContent = (sec < 10 ? "0" + end.min : end.min) + ":" + (sec < 10 ? "0" + sec : sec);
         if (end.min == 5 && sec == 0) {
             alert("Halftime!");
+            end.ball.newPos = new end.Vector(end.canvas.width / 2, end.canvas.height / 2);
         }
         if (end.min == 10 && sec == 0) {
             alert("End of Game! Score: " + document.getElementById("homeScore")?.innerHTML + "-" + document.getElementById("awayScore")?.innerHTML);
