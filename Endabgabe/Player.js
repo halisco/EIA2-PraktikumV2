@@ -2,18 +2,18 @@
 var end;
 (function (end) {
     class Player extends end.Person {
-        constructor(_pos, _num, _name) {
-            super(_pos);
+        constructor(_pos, _num, _name, _role, _nation) {
+            super(_pos, _name);
             this.speed = 0; //mindesten 0.02 schnell maximal eintrag von pace schnell
             this.balance = 0; //Nummer von 70 bis 100 über Form, verwenden in Ball.move() bei newPos.x und y
-            this.colorOfNumber = "#FFFFFF";
             this.opacity = 1;
-            this.name = _name;
             this.speed = Math.random() * (end.pace - 0.02) + 0.02; //mindesten 0.02 schnell maximal eintrag von pace schnell
             this.balance = Math.random() * (end.shotMax - end.shotMin) + end.shotMin; //Nummer von 70 bis 100 über Form, verwenden in Ball.move() bei newPos.x und y
             this.oldPosition = _pos.copy();
             this.number = _num;
-            console.log(this.speed);
+            this.role = _role;
+            this.nation = _nation;
+            //console.log(this.speed);
             if (end.persons.length <= 10) {
                 this.color = end.homeColor.toString();
                 this.team = "home";
@@ -47,7 +47,7 @@ var end;
             end.crc2.stroke(player);
             end.crc2.fill(player);
             end.crc2.restore();
-            end.crc2.fillStyle = this.colorOfNumber;
+            end.crc2.fillStyle = "white";
             end.crc2.font = "10px Arial";
             if (this.number >= 10) {
                 end.crc2.strokeText(this.number.toString(), 14, 21);
@@ -118,11 +118,11 @@ var end;
                 cardName.style.textShadow = "2px 2px 5px black";
                 div.appendChild(cardName);
                 let cardPos = document.createElement("h5");
-                cardPos.innerHTML = end.name[end.spieler1][1].toString();
+                cardPos.innerHTML = this.role.toString();
                 cardPos.style.textShadow = "2px 2px 5px black";
                 div.appendChild(cardPos);
                 let cardImg = document.createElement("img");
-                cardImg.setAttribute("src", "Flags/" + end.name[end.spieler1][2].toString() + ".png");
+                cardImg.setAttribute("src", "Flags/" + this.nation + ".png");
                 cardImg.setAttribute("class", "flag");
                 cardImg.style.width = "30px";
                 cardImg.style.height = "20px";
@@ -136,11 +136,16 @@ var end;
                 cardBalance.style.textShadow = "2px 2px 5px black";
                 div.appendChild(cardBalance);
                 let cardImg2 = document.createElement("img");
-                cardImg2.setAttribute("src", "Players/" + end.name[end.spieler1][0].toString() + ".png");
+                cardImg2.setAttribute("src", "Players/" + this.name + ".png");
                 cardImg2.setAttribute("class", "player");
                 cardImg2.style.width = "161px";
                 cardImg2.style.height = "189px";
                 div.appendChild(cardImg2);
+                let btt = document.createElement("button");
+                btt.innerHTML = "change";
+                btt.setAttribute("id", "changer1");
+                btt.addEventListener("click", this.change.bind(this));
+                div.appendChild(btt);
             }
             else {
                 this.opacity = 0.5;
@@ -156,11 +161,11 @@ var end;
                 cardName.style.textShadow = "2px 2px 5px black";
                 div.appendChild(cardName);
                 let cardPos = document.createElement("h5");
-                cardPos.innerHTML = end.name[end.spieler2][1].toString();
+                cardPos.innerHTML = this.role.toString();
                 cardPos.style.textShadow = "2px 2px 5px black";
                 div.appendChild(cardPos);
                 let cardImg = document.createElement("img");
-                cardImg.setAttribute("src", "Flags/" + end.name[end.spieler2][2].toString() + ".png");
+                cardImg.setAttribute("src", "Flags/" + this.nation + ".png");
                 cardImg.setAttribute("class", "flag");
                 cardImg.style.width = "30px";
                 cardImg.style.height = "20px";
@@ -174,12 +179,70 @@ var end;
                 cardBalance.style.textShadow = "2px 2px 5px black";
                 div.appendChild(cardBalance);
                 let cardImg2 = document.createElement("img");
-                cardImg2.setAttribute("src", "Players/" + end.name[end.spieler2][0].toString() + ".png");
+                cardImg2.setAttribute("src", "Players/" + this.name + ".png");
                 cardImg2.setAttribute("class", "player");
                 cardImg2.style.width = "161px";
                 cardImg2.style.height = "189px";
                 div.appendChild(cardImg2);
+                let btt = document.createElement("button");
+                btt.innerHTML = "change";
+                btt.setAttribute("id", "changer2");
+                btt.addEventListener("click", this.change.bind(this));
+                div.appendChild(btt);
             }
+        }
+        change(_event) {
+            let elem = _event.target;
+            let verg = String(elem.getAttribute("id"));
+            if (end.ersatzPersons.length == 0) {
+                elem.innerHTML = "no more changes!";
+                return;
+            }
+            else {
+                elem.parentNode?.removeChild(elem);
+            }
+            for (let i = 0; i < 3; i++) {
+                let random = Math.floor(Math.random() * end.ersatzPersons.length);
+                let div;
+                if (verg == "changer1") {
+                    div = document.getElementById("card1");
+                }
+                else {
+                    div = document.getElementById("card2");
+                }
+                let fieldset = document.createElement("fieldset");
+                fieldset.setAttribute("class", "changePlayer");
+                let name = document.createElement("p");
+                name.style.textShadow = "1px 1px 2px black";
+                name.setAttribute("name", end.ersatzPersons[random].name.toString());
+                name.innerHTML = end.ersatzPersons[random].number + " - " + end.ersatzPersons[random].name + " - " + end.ersatzPersons[random].role + " - P: " + Math.floor(end.ersatzPersons[random].speed * 1000) + " - S: " + Math.round(end.ersatzPersons[random].balance * 100) / 100;
+                name.addEventListener("click", this.substitute.bind(this));
+                fieldset.appendChild(name);
+                div.appendChild(fieldset);
+            }
+        }
+        substitute(_event) {
+            let elem = _event.target;
+            let nameOf = String(elem.getAttribute("name"));
+            for (let i = 0; i < end.ersatzPersons.length; i++) {
+                if (end.ersatzPersons[i].name == nameOf) {
+                    this.name = end.ersatzPersons[i].name;
+                    this.number = end.ersatzPersons[i].number;
+                    this.balance = end.ersatzPersons[i].balance;
+                    this.speed = end.ersatzPersons[i].speed;
+                    this.role = end.ersatzPersons[i].role;
+                    this.nation = end.ersatzPersons[i].nation;
+                    end.ersatzPersons.splice(i, 1);
+                }
+            }
+            let vergleich;
+            if (this.team == "home") {
+                vergleich = 1;
+            }
+            else {
+                vergleich = 2;
+            }
+            this.playerCard(vergleich);
         }
     }
     end.Player = Player;

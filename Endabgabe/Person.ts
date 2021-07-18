@@ -5,15 +5,17 @@ namespace end {
         direction: number;
         color: string;
         opacity: number;
-        colorOfNumber: string;
         number: number;
         oldPosition: Vector;
         balance: number = 0;
         name: String;
+        role: String;
+        nation: String;
         team: String;
 
-        constructor(_pos: Vector) {
+        constructor(_pos: Vector, _name: String) {
             this.position = _pos;
+            this.name = _name;
         }
 
         draw(): void {
@@ -36,7 +38,13 @@ namespace end {
             //
         }
 
+        change(_event: Event): void {
+            //
+        }
         
+        substitute(_event: Event): void {
+            //
+        }
 
     }
 }

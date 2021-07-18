@@ -3,7 +3,7 @@ namespace end {
         position: Vector;
         speed: number = 0.1;
         newPos: Vector;
-        balance: Vector;
+        //balance: Vector;
         isMoving: boolean = false;
         movementThreshold: number = 2;
         scoreHome: number = 0;
@@ -46,20 +46,33 @@ namespace end {
             
             let span1: HTMLElement = document.getElementById("homeScore")!;
             let span2: HTMLElement = document.getElementById("awayScore")!;
-            //HeimTor Koordinaten
+            //AuswärtsTor Koordinaten
             if (this.position.x <= 10 && this.position.y >= (canvas.height / 2) - 22 && this.position.y <= (canvas.height / 2) + 22 ) {
                 this.scoreAway++;
                 span2.innerHTML = this.scoreAway.toString();
                 console.log(String(this.scoreAway));
-                alert("GOAL!  " + span1.innerHTML + "-" + span2.innerHTML);
+                alert("GOAL!  " + span1.innerHTML + "-" + span2.innerHTML + " from " + playerOnBall.name);
+                let div: HTMLElement = document.getElementById("tor2")!;
+                let p: HTMLElement = document.createElement("p");
+                p.style.marginTop = "-10px";
+                p.innerHTML = playerOnBall.name + " '" + min.toString();
+                div.appendChild(p);
+
+
                 this.newPos = new Vector(canvas.width / 2, canvas.height / 2);
             }
-            //AuswärtsTor Koordinaten
+            //HeimTor  Koordinaten
             if (this.position.x >= canvas.width - 10 && this.position.y >= (canvas.height / 2) - 22 && this.position.y <= (canvas.height / 2) + 22 ) {
                 this.scoreHome++;
                 span1.innerHTML = this.scoreHome.toString();
                 console.log(String(this.scoreHome));
-                alert("GOAL!  " + span1.innerHTML + "-" + span2.innerHTML);
+                alert("GOAL!  " + span1.innerHTML + "-" + span2.innerHTML + " from " + playerOnBall.name);
+                let div: HTMLElement = document.getElementById("tor1")!;
+                let p: HTMLElement = document.createElement("p");
+                p.style.marginTop = "-10px";
+                p.innerHTML = playerOnBall.name + " '" + min.toString();
+                div.appendChild(p);
+
                 this.newPos = new Vector(canvas.width / 2, canvas.height / 2);
             }
             //Aus hinter den Torlinien

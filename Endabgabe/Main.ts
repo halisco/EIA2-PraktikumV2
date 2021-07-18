@@ -16,10 +16,14 @@ namespace end {
     let pos: number [][] = [[50, 260], [120, 125], [160, 245], [90, 375], [240, 425], [320, 325], [390, 195], [430, 395], [620, 125], [690, 405], [560, 295], [755, 260], [570, 415], [660, 330], [720, 165], [540, 195], [420, 295], [480, 85], [250, 75], [100, 455], [180, 345], [220, 225] ];
     let posReff: number [][] = [[10, 0], [750, 470], [420, 210]];
     let reffName: string[] = ["LS", "RS", " S"];
-    
+
+    let ersatzNumbers: number[] = [23, 18, 76, 51, 16, 12, 13, 99, 90, 28, 31];
+    export let ersatzName: String [][] = [["Donaruma", "TW", "it"], ["Depay", "ZOM", "nl"], ["Lukaku", "ST", "be"], ["Foden", "ZM", "en"], ["Bonucci", "IV", "it"], ["Mbabu", "IV", "sw"], ["Courtois", "TW", "be"], ["Shaqiri", "RM", "sw"], ["Gosens", "LM", "de"], ["Carvajal", "LM", "sp"], ["Goretzka", "ZDM", "de"]];
+    export let ersatzPersons: Person[] = [];
+
     export let persons: Person[] = [];
     export let ball: Ball;
-    let playerOnBall: Player;
+    export let playerOnBall: Player;
     let imageData: ImageData;
     
     
@@ -69,27 +73,41 @@ namespace end {
         starter.innerHTML = "reload";
         starter.addEventListener("click", function(): void { window.location.reload(); });
         
-        
         generatePlayer();                                                           //Player, Schiri und Ball generieren
         
         canvas.addEventListener("click", shotBall);                                 //Dem Ball den Click Listener geben
 
-        //let cardButton1: HTMLElement = document.getElementById("next1")!;           //Spielerinfo button (1. Team) mit Click Listener anlegen
-        //cardButton1.addEventListener("click", nextCard);                            //Spielerinfo Inhalte (1. Team) generieren
-        //let cardButton2: HTMLElement = document.getElementById("next2")!;           //Spielerinfo button (2. Team) mit Click Listener anlegen
-        //cardButton2.addEventListener("click", nextCard);                            //Spielerinfo Inhalte (2. Team) generieren
-  
-        //console.log(ball.position.x, ball.position.y);
         window.setInterval(animate, 50);                                           //Spieler und Ball animieren
         
+        setInterval(handle, 1000);   
         
     }
+
+    let sec: number = 0;
+    export let min: number = 0;
+    function handle(): void {
+        sec++;
+        if (sec >= 60) {
+            sec = 0;
+            min++;
+        } 
+        document.getElementById("time")!.textContent = (sec < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+
+        if (min == 5 && sec == 0) {
+            alert("Halftime!");
+        }
+        if (min == 10 && sec == 0) {
+            alert("End of Game! Score: " + document.getElementById("homeScore")?.innerHTML + "-" + document.getElementById("awayScore")?.innerHTML);
+            window.location.reload();
+        }
+    }
+      
 
 
     function generatePlayer(): void {
 
         for (let i: number = 0; i <= 21; i++) {
-        let player: Player = new Player(new Vector(pos[i][0], pos[i][1]), numbers[i], name[i][0]);
+        let player: Player = new Player(new Vector(pos[i][0], pos[i][1]), numbers[i], name[i][0], name[i][1], name[i][2]);
         player.draw();
         persons.push(player);
         }
@@ -103,7 +121,12 @@ namespace end {
 
         let fotball: Ball = new Ball(new Vector(canvas.width / 2, canvas.height / 2));
         fotball.draw();
-        ball = fotball;   
+        ball = fotball;
+        
+        for (let i: number = 0; i <= 10; i++) {
+        let ersatz: Player = new Player(new Vector(0, 0), ersatzNumbers[i], ersatzName[i][0], ersatzName[i][1], ersatzName[i][2]);
+        ersatzPersons.push(ersatz);
+        }
     }
 
 
@@ -194,14 +217,14 @@ namespace end {
         if (searchButton == "next1") {
             
             if (spieler1 >= 1) {
-            persons[spieler1 - 1].opacity = 1;
+                persons[spieler1 - 1].opacity = 1;
             }
             if (spieler1 == 11) {
                 spieler1 = 0;
             }
             persons[spieler1].playerCard(1);
             spieler1++;
-            
+
         } else {
 
             if (spieler2 >= 1) {
@@ -214,13 +237,6 @@ namespace end {
             spieler2++;
         }
     }
-
-    
-    
-    
-    
-
-
 
 
 }

@@ -5,9 +5,8 @@ namespace end {
         speed: number;
 
         constructor(_pos: Vector, _name: string) {
-            super(_pos);
+            super(_pos, _name);
             this.speed = 0.02;
-            this.name = _name;
         }
 
         draw(): void {
@@ -41,22 +40,22 @@ namespace end {
 
         move(): void {
             if (this.name == "LS") {
-                if (ball.position.x <= 300) {
+                if (ball.position.x <= 300) {  //bewegt sich nur wenn Ball linke Hälfte
                     let directionX: number = ball.position.x - this.position.x;
                     directionX *= this.speed;
                     this.position.x += directionX;
                 }
             } else if (this.name == "RS") {
-                if (ball.position.x >= 500) {
+                if (ball.position.x >= 500) {  //bewegt sich nur wenn Ball rechte Hälfte
                     let directionX: number = ball.position.x - this.position.x;
                     directionX *= this.speed;
                     this.position.x += directionX;
                 }       
-            } else {
+            } else {                           //bewegt sich immer (HauptReff)
                 let directionX: number = ball.position.x - this.position.x;
                 directionX *= this.speed;
                 this.position.x += directionX;
             }
-        }
+        } 
     }
 }

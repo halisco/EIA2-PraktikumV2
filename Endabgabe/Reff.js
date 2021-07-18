@@ -3,9 +3,8 @@ var end;
 (function (end) {
     class Reff extends end.Person {
         constructor(_pos, _name) {
-            super(_pos);
+            super(_pos, _name);
             this.speed = 0.02;
-            this.name = _name;
         }
         draw() {
             end.crc2.translate(this.position.x, this.position.y);
@@ -37,20 +36,20 @@ var end;
         }
         move() {
             if (this.name == "LS") {
-                if (end.ball.position.x <= 300) {
+                if (end.ball.position.x <= 300) { //bewegt sich nur wenn Ball linke Hälfte
                     let directionX = end.ball.position.x - this.position.x;
                     directionX *= this.speed;
                     this.position.x += directionX;
                 }
             }
             else if (this.name == "RS") {
-                if (end.ball.position.x >= 500) {
+                if (end.ball.position.x >= 500) { //bewegt sich nur wenn Ball rechte Hälfte
                     let directionX = end.ball.position.x - this.position.x;
                     directionX *= this.speed;
                     this.position.x += directionX;
                 }
             }
-            else {
+            else { //bewegt sich immer (HauptReff)
                 let directionX = end.ball.position.x - this.position.x;
                 directionX *= this.speed;
                 this.position.x += directionX;
