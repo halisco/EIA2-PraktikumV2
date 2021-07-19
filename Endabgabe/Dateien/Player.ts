@@ -143,7 +143,7 @@ namespace end {
             cardPos.style.textShadow = "2px 2px 5px black";
             div.appendChild(cardPos);
             let cardImg: HTMLElement =  document.createElement("img");
-            cardImg.setAttribute("src", "Flags/" + this.nation + ".png");
+            cardImg.setAttribute("src", "../Flags/" + this.nation + ".png");
             cardImg.setAttribute("class", "flag");
             cardImg.style.width = "30px";
             cardImg.style.height = "20px";
@@ -157,7 +157,7 @@ namespace end {
             cardBalance.style.textShadow = "2px 2px 5px black";
             div.appendChild(cardBalance);
             let cardImg2: HTMLElement =  document.createElement("img");
-            cardImg2.setAttribute("src", "Players/" + this.name + ".png");
+            cardImg2.setAttribute("src", "../Players/" + this.name + ".png");
             cardImg2.setAttribute("class", "player");
             cardImg2.style.width = "161px";
             cardImg2.style.height = "189px";
@@ -187,7 +187,7 @@ namespace end {
                 cardPos.style.textShadow = "2px 2px 5px black";
                 div.appendChild(cardPos);
                 let cardImg: HTMLElement =  document.createElement("img");
-                cardImg.setAttribute("src", "Flags/" + this.nation + ".png");
+                cardImg.setAttribute("src", "../Flags/" + this.nation + ".png");
                 cardImg.setAttribute("class", "flag");
                 cardImg.style.width = "30px";
                 cardImg.style.height = "20px";
@@ -201,7 +201,7 @@ namespace end {
                 cardBalance.style.textShadow = "2px 2px 5px black";
                 div.appendChild(cardBalance);
                 let cardImg2: HTMLElement =  document.createElement("img");
-                cardImg2.setAttribute("src", "Players/" + this.name + ".png");
+                cardImg2.setAttribute("src", "../Players/" + this.name + ".png");
                 cardImg2.setAttribute("class", "player");
                 cardImg2.style.width = "161px";
                 cardImg2.style.height = "189px";
@@ -255,7 +255,6 @@ namespace end {
             let elem: HTMLElement = <HTMLElement>_event.target;
             let nameOf: String = String(elem.getAttribute("name"));
 
-
             for (let i: number = 0; i < ersatzPersons.length; i++) {
                 if (ersatzPersons[i].name == nameOf) {
                     this.name = ersatzPersons[i].name;
@@ -266,10 +265,8 @@ namespace end {
                     this.nation = ersatzPersons[i].nation;
                     ersatzPersons.splice(i, 1);
                 }
-                
+            
             }
-
-
             let vergleich: number;
             
             if (this.team == "home") {

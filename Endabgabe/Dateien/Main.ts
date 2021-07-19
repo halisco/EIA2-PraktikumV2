@@ -206,7 +206,7 @@ namespace end {
     
     function nextCard(_event: Event): void {
         let elem: HTMLElement = <HTMLElement>_event.target;
-        let searchButton: string = String(elem.getAttribute("id"));
+        let searchButton: String = String(elem.getAttribute("id"));
 
         if (persons.length == 0) {
             elem.innerHTML = "Start game first!";
