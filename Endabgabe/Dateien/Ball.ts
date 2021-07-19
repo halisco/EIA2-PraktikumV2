@@ -3,7 +3,6 @@ namespace end {
         position: Vector;
         speed: number = 0.1;
         newPos: Vector;
-        //balance: Vector;
         isMoving: boolean = false;
         movementThreshold: number = 2;
         scoreHome: number = 0;
